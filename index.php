@@ -24,7 +24,7 @@ include_once("koneksi.php");
 
         <!--Form Input Data-->
 
-        <form class="form row" method="POST" action="" name="myForm" onsubmit="return(validate());">
+        <form class="form row" method="POST" action="" name="myForm" onSubmit="validate()">
             <!-- Kode php untuk menghubungkan form dengan database -->
             <?php
             $isi = '';
@@ -129,6 +129,25 @@ include_once("koneksi.php");
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+        <script>
+            function validate() {
+                if (document.myForm.isi.value == "") {
+                    alert("silahkan lengkapi bagian isi!");
+                    document.myForm.isi.focus();
+                    return false;
+                } else if (document.myForm.tgl_awal.value == "") {
+                    alert("silahkan lengkapi bagian Tanggal Awal!");
+                    document.myForm.tgl_awal.focus();
+                    return false;
+                } else if (document.myForm.tgl_akhir.value == "") {
+                    alert("silahkan lengkapi bagian Tanggal Akhir!");
+                    document.myForm.tgl_akhir.focus();
+                    return false;
+                }  else {
+                    return true;
+                }
+            } 
+        </script>
 </body>
 
 </html>
@@ -151,10 +170,7 @@ if (isset($_POST['simpan'])) {
                                             '0'
                                             )");
     }
-
-    echo "<script> 
-            document.location='index.php';
-            </script>";
+    echo "<script>document.location='index.php';</script>";
 }
 
 if (isset($_GET['aksi'])) {
@@ -166,9 +182,6 @@ if (isset($_GET['aksi'])) {
                                         WHERE
                                         id = '" . $_GET['id'] . "'");
     }
-
-    echo "<script> 
-            document.location='index.php';
-            </script>";
+    echo "<script>document.location='index.php';</script>";
 }
 ?>
